@@ -1,39 +1,29 @@
 package temp;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.*;
+
 import temp.binarySearchTree.BinarySearchTree;
 import temp.binarySearchTree.Node;
 
 public class Main {
   public static void main(String[] args) {
+    int[] nums = { 3, 3 };
+    int target = 6;
 
-    Node node1 = new Node(3, "3");
-    Node node2 = new Node(2, "2");
-    Node node3 = new Node(5, "5");
-    Node node4 = new Node(1, "1");
-    Node node5 = new Node(7, "7");
-    Node node6 = new Node(4, "4");
+    Map<Integer, Integer> map = new HashMap<>();
 
-    BinarySearchTree binarySearchTree = new BinarySearchTree();
+    int[] answer = new int[2];
+    for (int i = 0; i < nums.length; i++) {
+      if (map.containsKey(target - nums[i])) {
+        answer[0] = map.get(target - nums[i]);
+        answer[1] = i;
+      }
 
-    binarySearchTree.addNode(node1);
-    binarySearchTree.addNode(node2);
-    binarySearchTree.addNode(node3);
-    binarySearchTree.addNode(node4);
-    binarySearchTree.addNode(node5);
-    binarySearchTree.addNode(node6);
+      map.put(nums[i], i);
+    }
 
-    System.out.println("the root is : " + binarySearchTree.getRoot().getKey());
-    System.out.println("inOrderTraverse : ");
-    binarySearchTree.inOrderTraverse(binarySearchTree.getRoot());
-
-    System.out.println("preOrderTraverse : ");
-    binarySearchTree.preOrderTraverse(binarySearchTree.getRoot());
-
-    System.out.println("postOrderTraverse : ");
-    binarySearchTree.postOrderTraverse(binarySearchTree.getRoot());
-
-    Node findedNode = binarySearchTree.findNode(7);
-
-    System.out.println(findedNode.getName());
+    System.out.println(Arrays.toString(answer));
   }
 }
