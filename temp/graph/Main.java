@@ -1,31 +1,44 @@
 package temp.graph;
 
 import java.util.*;
+import java.io.*;
 
 public class Main {
-  public static void main(String[] args) {
-    Graph graph = new Graph();
-    graph.addEdge(0, 1, true);
-    graph.addEdge(0, 4, true);
-    graph.addEdge(1, 2, true);
-    graph.addEdge(1, 3, true);
-    graph.addEdge(1, 4, true);
-    graph.addEdge(2, 3, true);
-    graph.addEdge(3, 4, true);
+  public static void main(String[] args) throws IOException {
+    Graph<String> graph = new Graph<>();
 
-    System.out.println("Graph:\n"
-        + graph.toString());
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int length = Integer.parseInt(br.readLine().toString());
 
-    // Gives the no of vertices in the graph.
-    graph.getVertexCount();
+    for (int i = 0; i < length; i++) {
+      String[] inputTemp = br.readLine().split(" ");
+      for (int j = 0; j < inputTemp.length; j++) {
+        if (inputTemp[j].equals("1")) {
+          graph.addEdge(String.valueOf(i), String.valueOf(j), true);
+        }
+      }
+    }
 
-    // Gives the no of edges in the graph.
-    graph.getEdgesCount(true);
+    String[][] temp = new String[length][length];
+    // iterate as graph's map size()
+    for (String key : graph.getAdjencyVertiex().keySet()) {
+      int k = Integer.parseInt(key);
+      temp[k][k] = "1";
+      List<String> ls = graph.getAdjencyVertiex().get(key);
+      for (String str : ls) {
+        int v = Integer.parseInt(str);
 
-    // Tells whether the edge is present or not.
-    graph.hasEdge(3, 4);
+        temp[k][v] = "1";
+      }
+    }
 
-    // Tells whether vertex is present or not
-    graph.hasVertex(5);
+    for (int i = 0; i < temp.length; i++) {
+      System.out.println();
+      for (int j = 0; j < temp[i].length; j++) {
+        System.out.print(temp[i][j] + " ");
+      }
+    }
+    System.out.println();
+
   }
 }

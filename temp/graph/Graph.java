@@ -2,6 +2,7 @@ package temp.graph;
 
 import java.util.*;
 
+// https://www.acmicpc.net/problem/11403
 public class Graph<T> {
 
   private Map<T, List<T>> adjacencyVerties = new HashMap<>();
@@ -13,14 +14,12 @@ public class Graph<T> {
     this.adjacencyVerties = adjacencyVerties;
   }
 
-  public void addVertex(T source) {
-    adjacencyVerties.put(source, new LinkedList<T>());
+  public Map<T, List<T>> getAdjencyVertiex() {
+    return adjacencyVerties;
   }
 
-  public void removeVertex(String label) {
-    Vertex vertex = new Vertex(label);
-    adjacencyVerties.values().stream().forEach(element -> element.remove(vertex));
-    adjacencyVerties.remove(vertex);
+  public void addVertex(T source) {
+    adjacencyVerties.put(source, new LinkedList<T>());
   }
 
   public void addEdge(T source, T destination, boolean isBidirectional) {
@@ -80,19 +79,5 @@ public class Graph<T> {
 
     return builder.toString();
   }
-
-  // public void removeEdge(String label1, String label2) {
-  // Vertex vertex1 = new Vertex(label1);
-  // Vertex vertex2 = new Vertex(label2);
-
-  // List<Vertex> edgeVertex1 = adjacencyVerties.get(vertex1);
-  // List<Vertex> edgeVertex2 = adjacencyVerties.get(vertex2);
-  // if (edgeVertex1 != null) {
-  // edgeVertex1.remove(vertex2);
-  // }
-  // if (edgeVertex2 != null) {
-  // edgeVertex2.remove(vertex1);
-  // }
-  // }
 
 }

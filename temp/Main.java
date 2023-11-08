@@ -1,29 +1,62 @@
 package temp;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.*;
-
-import temp.binarySearchTree.BinarySearchTree;
-import temp.binarySearchTree.Node;
+import java.io.*;
 
 public class Main {
-  public static void main(String[] args) {
-    int[] nums = { 3, 3 };
-    int target = 6;
+  public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    Map<Integer, Integer> map = new HashMap<>();
+    Graph<Integer> graph = new Graph<>();
 
-    int[] answer = new int[2];
-    for (int i = 0; i < nums.length; i++) {
-      if (map.containsKey(target - nums[i])) {
-        answer[0] = map.get(target - nums[i]);
-        answer[1] = i;
+    int size = Integer.parseInt(br.readLine());
+    for (int i = 0; i < size; i++) {
+      String[] inputTemp = br.readLine().split(" ");
+      for (int j = 0; j < inputTemp.length; j++) {
+        if (Integer.parseInt(inputTemp[j]) == 1) {
+          graph.addEdge(i, j);
+        }
       }
-
-      map.put(nums[i], i);
     }
 
-    System.out.println(Arrays.toString(answer));
+    int[][] answerArr = new int[size][size];
+    for (int key : graph.getMap().keySet()) {
+      answerArr[key][key] = 1;
+      for (int val : graph.getMap().get(key)) {
+        answerArr[key][val] = 1;
+      }
+    }
+
+    for (int i = 0; i < answerArr.length; i++) {
+      System.out.println();
+      for (int j = 0; j < answerArr[i].length; j++) {
+        System.out.print(answerArr[i][j] + " ");
+      }
+    }
+    System.out.println();
+
+  }
+}
+
+class Graph<T> {
+  Map<T, List<T>> map = new HashMap<>();
+
+  Graph() {
+  }
+
+  public Map<T, List<T>> getMap() {
+    return map;
+  }
+
+  void addEdge(T source, T destination) {
+    if (map.get(source) == null) {
+      map.put(source, new LinkedList<>());
+    }
+    if (map.get(destination) == null) {
+      map.put(destination, new LinkedList<>());
+    }
+
+    map.get(source).add(destination);
+    map.get(destination).add(source);
   }
 }
