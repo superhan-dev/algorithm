@@ -32,13 +32,13 @@ public class Main {
       }
     }
 
+    StringBuilder sb = new StringBuilder();
     for (int i = 0; i < temp.length; i++) {
-      System.out.println();
       for (int j = 0; j < temp[i].length; j++) {
-        System.out.print(temp[i][j] + " ");
+        sb.append(temp[i][j] + " ");
       }
+      sb.append("\n");
     }
-    System.out.println();
-
+    System.out.println(sb);
   }
 }

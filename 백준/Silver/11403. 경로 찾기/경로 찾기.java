@@ -26,8 +26,17 @@ public class Main {
 
   }
 
+  /**
+   * @description
+   *              In this question, we didn't need to compare the original
+   *              floydWarshall's condition(which is dist[i][j] < dist[i][k] +
+   *              dist[k][j].).
+   *              But it needs to used the condition below (dist[i][k] == 1 &&
+   *              dist[k][j] == 1) to give a number to the target.
+   * 
+   */
   static int[][] floydWarshall(int[][] dist, int n) {
-
+    // K is vertex number
     for (int k = 0; k < n; k++) {
       for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
