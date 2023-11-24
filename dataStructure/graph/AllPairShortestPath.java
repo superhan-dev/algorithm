@@ -1,4 +1,4 @@
-package temp.graph;
+package dataStructure.graph;
 
 // https://www.youtube.com/watch?v=oNI0rf2P9gE
 public class AllPairShortestPath {

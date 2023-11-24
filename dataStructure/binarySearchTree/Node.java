@@ -1,4 +1,4 @@
-package temp.binarySearchTree;
+package dataStructure.binarySearchTree;
 
 public class Node {
 

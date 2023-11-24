@@ -1,4 +1,4 @@
-package temp.binarySearchTree;
+package dataStructure.binarySearchTree;
 
 public class Main {
   public static void main(String[] args) {

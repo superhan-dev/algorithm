@@ -1,4 +1,4 @@
-package temp.graph;
+package dataStructure.graph;
 
 public class Vertex {
   String label;
