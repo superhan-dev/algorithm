@@ -61,13 +61,13 @@ class SingleLinkedLsit<V> {
     if(head == null){
       newNode.next = head;
       head = newNode;
-    } else {
-      // move the pointer to end of Node.
-      while(last.next != null){
-        last = last.next;
-      }
-      last.next = newNode; // Insert the value at the end.
+      return;
     }
+    // move the pointer to end of Node.
+    while(last.next != null){
+      last = last.next;
+    }
+    last.next = newNode; // Insert the value at the end.
   }
 }
 ```

@@ -1,4 +1,4 @@
-package temp;
+  package temp;
 
 import java.io.*;
 
@@ -6,40 +6,50 @@ public class Main {
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    int n = Integer.parseInt(br.readLine());
-    int[][] arr = new int[n][n];
-    for (int i = 0; i < n; i++) {
-      String[] temp = br.readLine().split(" ");
-      for (int j = 0; j < temp.length; j++) {
-        arr[i][j] = Integer.parseInt(temp[j]);
+    int N = Integer.parseInt(br.readLine());
+    String[] defaultTemp = br.readLine().split("");
+    String[] answerTemp = br.readLine().split("");
+
+    for(int i=0;i<N;i++){
+      if(defaultTemp[i].equals("0")){
+        defaultTemp[i] = "1";
+      } else {
+        defaultTemp[i] = "0";
       }
-    }
 
-    arr = floydWarshall(arr, n);
-
-    StringBuilder sb = new StringBuilder();
-    for (int i = 0; i < arr.length; i++) {
-      for (int j = 0; j < arr[i].length; j++) {
-        sb.append(arr[i][j] + " ");
-      }
-      sb.append("\n");
-    }
-    System.out.println(sb);
-
-  }
-
-  static int[][] floydWarshall(int[][] dist, int n) {
-
-    for (int k = 0; k < n; k++) {
-      for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-          if (dist[i][k] == 1 && dist[k][j] == 1) {
-            dist[i][j] = 1;
-          }
+      if(i > 0){
+        if(defaultTemp[i-1].equals("0")){
+          defaultTemp[i-1] = "1";
+        } else {
+          defaultTemp[i-1] = "0";
         }
       }
-    }
+   
+      if(i < N-1){
+        if(defaultTemp[i+1].equals("0")){
+          defaultTemp[i+1] = "1";
+        } else {
+          defaultTemp[i+1] = "0";
+        }
+      }
+  
+      int diffCount=0;
+      for(int j=0;j<N;j++){
+        if(diffCount > 0){
+          break;
+        }
 
-    return dist;
-  }
+        if(!answerTemp[j].equals(defaultTemp[j])){
+          diffCount++;
+        }
+      }
+
+      if(diffCount == 0){
+        System.out.println(i+1);
+      } else {
+        System.out.println(-1);
+      }
+    }
+ }
 }
+
