@@ -91,3 +91,69 @@ class TestGraph{
 }
 
 ```
+
+# Graph codes
+
+write Graph code set for practice
+
+```java
+
+class Graph<V>{
+  LinkedList<Vertex<V>> vertices;
+  boolean isWeight;
+  boolean isDiractional;
+
+  public Graph(boolean isWeight, boolean isDirectional){
+    this.vertices = new LinkedList<>();
+    this.isWeight = isWeight;
+    this.isDirectional = isDirectional;
+  }
+
+  public Vertex<V> addVertex(V data) {
+    Vertex<V> newVertex = new Vertex<V>(data);
+    vertices.add(newVertex);
+
+    return newVertex;
+  }
+
+  public void addEdge(Vertex<V>  startVertex, Vertex<V> endVertex, Integer weight){
+    if(!isWeight){
+      weight = null;
+    }
+    startVertex.addEdge(endVertex,weight);
+
+    if(!isDirectional) {
+      endVertex.addEdge(startVertex,weight);
+    }
+  }
+
+}
+
+class Vertex<V> {
+  V data;
+  LinkedList<Edge> edges;
+
+  public Vertex(V data){
+    this.data = data;
+    this.edges = new LinkedList<Edge<V>>();
+  }
+
+  public void addEdge(Vertex<V> endVertex, Integer weight){
+    this.edges.add(new Vertex<V>(this), endVertex, weight);
+  }
+
+}
+
+class Edge<V>{
+  Vertex<V> start;
+  Vertex<V> end;
+  Integer weight;
+
+  public Edge(Vertex<V> startVertex, Vertex<V> endVertex, Integer weight){
+    this.start = startVertex;
+    this.end = endVertex;
+    this.weight = weight;
+  }
+}
+
+```

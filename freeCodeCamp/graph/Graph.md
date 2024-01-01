@@ -2,14 +2,60 @@
 
 The Graph is consisted by a group of vertex and group of edges.
 
-## Vertex
+## The attributes of Graph
+
+- vertices
+  - Graph has a LinkedList of Vertex. The reason of chice a LinkedList is a Graph need to keep add and reomove vertex in an algorithm and LinkedList has adventage of adding and removing data.
+- isWeight
+  - This is a flag of a weighted Graph. If it is true, the Edges of the Graph has a weight. It allocate a priority of the path.
+- isDirectional
+  - If It is true, all edges are allocated each other.
+
+## The methods of Graph
+
+- addVertex
+  - The Graph has a responsibility of adding a vertex in the vertices list.
+- removeVertex
+  - The Graph has a responsibility of removing a vertex fromt the vertieces list.
+
+# Vertex
 
 vertex is a node which has data for the graph and group of edge.
 
-## Edge
+## The attributes of Vertex
+
+- edges
+  - the attribute is consisted with a LinkedList
+- data
+  - The type of Vertex could be stated but I usually implemente the type of Vertex with Generic syntex of Java.
+
+## The methods of Vertex
+
+- getData
+- addEdge
+  - The vertex object has responsibility of adding an Edge for edges attribute. the starting vertex will be this(instance) and set end vertex for the starting vertex with weight value.
+- removeEdge
+  - The vertex object has responsibility of removing an edge from edges list.
+
+# Edge
 
 A edge has the pointer of the start vertex and end vertex.
 Also It has the weight value for the edge which is representing of the priority.
+
+## The attributes of Edge
+
+- start
+  - it is a vertex object which is starting point of this edge
+- end
+  - it is a vertex object which is ending point of this edge vertex
+- weight
+  - it allocate priority to compare importance of path of edge.
+
+## The methods of Edge
+
+- getWeight
+- getStart
+- getEnd
 
 ```java
 class Graph<V>{
