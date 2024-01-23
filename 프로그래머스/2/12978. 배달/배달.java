@@ -35,6 +35,9 @@ class Solution {
             int currentVertex = current[0];
             int currentWeight = current[1];
             
+            /**
+             * NOTE: this code was the wrong point
+             */
             if(currentWeight > distances[currentVertex]) continue;
             
             for(int i=0;i<graph.get(currentVertex).size();i++){

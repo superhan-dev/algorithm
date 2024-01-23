@@ -1,4 +1,4 @@
-package freeCodeCamp.graph;
+package freeCodeCamp.graph.java;
 
 import java.util.ArrayList;
 

@@ -48,9 +48,9 @@ public class Main {
     for(int coin : coins) {
       // the substraction will accumulated through the algorithm. When the value meet zero, all the algorithm will be finished.
       int subAmount = amount - coin;
-      // When the value meet zero, subCoin variable will have zero as well.
+      // When the value meet zero, subCoin will be zero.
       int subCoins = minChange(subAmount, coins); // count of coins
-      // If the subAmount is not negative number, It need to be counted
+      // If the subAmount is not negative number, It needs to be counted
       if(subCoins != -1){
         int numCoins = subCoins + 1; // sub coins plus current(+1) count.
         if(numCoins < minCoins || minCoins == -1){
@@ -81,8 +81,8 @@ public class Main {
 
       // subCoins are the result of method.
       if(subCoins != -1){
-        int numCoins = subCoins + 1; // the subCoins will return 0, if the subAmount is 0. So, add the count by plus 1
-        // How the minCoins are gibber than numCoins?
+        int numCoins = subCoins + 1; // the subCoins will return 0, if the subAmount is 0. So, plus the count 1
+        // How the minCoins are bigger than numCoins?
         // In usual case the minCoins will be -1. So, the minCoins will be 1 for proper count.
         if(numCoins < minCoins || minCoins == -1){
           minCoins = numCoins;

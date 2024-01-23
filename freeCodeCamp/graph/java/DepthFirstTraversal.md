@@ -8,14 +8,19 @@ In Java, the visited list will be implemented by the LinkedList.
 
 ## Why the LinkedList?
 
-The reason of choose the LinkedList is the efficiency of insert and delete. When insert or delete a value into LinkedList, It just swap a pointer of the value. But if use the ArrayList, you need to rerange all value's address.
+The reason of choose the LinkedList is the efficiency of insert and delete.
+When insert or delete a value into LinkedList, It just swap a pointer of the value.
+But if use the ArrayList, you need to rerange all value's address.
 
 Also, When searching a vlue in visited vertices list always reference by value.
 Therefore, the LinkedList's weekness will be covered. So, using the LinkedList will be a good chice for the DFS.
 
 ## Why the recursive call?
 
-In the DFS algorithm, It needs a recursive call after visiting a Vertex, because the recursive call is very useful to implement traversal of the depth. It has the call stack physically pops and calls the function at the same time.
+In the DFS algorithm, It needs a recursive call after visiting a Vertex,
+because the recursive call is very useful to implement traversal of the depth.
+
+It has the call stack physically pops and calls the function at the same time.
 Also, It helps the codes become shorter than writing normal iterating with the loop
 
 # Code
@@ -95,3 +100,7 @@ class TestGraph{
 }
 
 ```
+
+# Without graph object
+
+in many of coding test
