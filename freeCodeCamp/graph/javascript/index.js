@@ -13,35 +13,34 @@ const largestComponent = (graph) => {
   // To prohebit loop through the infinity loop, use the visited Set.
   const visited = new Set();
 
-  const source = Object.keys(graph)[0];
-  let largestCount = explore(graph, source, visited);
-
-  console.log(largestCount + 1);
-};
-
-const explore = (graph, source, visited) => {
-  const queue = [source];
-
   let largestCount = 0;
-  while (queue.length > 0) {
-    const current = queue.shift();
-
-    if (visited.has(current)) continue;
-    let count = 0;
-    for (const neighbor of graph[current]) {
-      if (!visited.has(neighbor)) {
-        count++;
-        visited.add(neighbor);
-        queue.push(neighbor);
-      }
-    }
+  for (const node in graph) {
+    let count = explore(graph, node, visited);
 
     if (largestCount < count) {
       largestCount = count;
     }
   }
 
-  return largestCount;
+  // The function dosen't count myself. So, plus 1 for that.
+  console.log(largestCount);
+};
+
+const explore = (graph, vertex, visited) => {
+  if (visited.has(String(vertex))) return 0;
+
+  // To prohibit  an infinity loop the visited value
+  visited.add(String(vertex));
+  // If it is not a visited value, increse the size of the component.
+  let count = 1;
+
+  for (const neighbor of graph[vertex]) {
+    count++;
+    // keep exploring to the last node with incresing count.
+    explore(graph, neighbor, visited, count);
+  }
+
+  return count;
 };
 
 largestComponent(graph);

@@ -34,14 +34,13 @@ const largestComponent = (graph) => {
   for (const node in graph) {
     let count = explore(graph, node, visited);
 
-    console.log("the count: ", count);
     if (largestCount < count) {
       largestCount = count;
     }
   }
 
   // The function dosen't count myself. So, plus 1 for that.
-  console.log(largestCount + 1);
+  console.log(largestCount);
 };
 
 const explore = (graph, vertex, visited) => {
@@ -50,7 +49,7 @@ const explore = (graph, vertex, visited) => {
   // To prohibit  an infinity loop the visited value
   visited.add(String(vertex));
   // If it is not a visited value, increse the size of the component.
-  let count = 0;
+  let count = 1;
 
   for (const neighbor of graph[vertex]) {
     count++;
@@ -75,7 +74,7 @@ const largestComponent = (graph) => {
   const source = Object.keys(graph)[0];
   let largestCount = explore(graph, source, visited);
 
-  console.log(largestCount + 1);
+  console.log(largestCount);
 };
 
 const explore = (graph, source, visited) => {
@@ -86,7 +85,7 @@ const explore = (graph, source, visited) => {
     const current = queue.shift();
 
     if (visited.has(current)) continue;
-    let count = 0;
+    let count = 1;
     for (const neighbor of graph[current]) {
       if (!visited.has(neighbor)) {
         count++;
