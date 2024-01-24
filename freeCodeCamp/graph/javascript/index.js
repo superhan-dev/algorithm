@@ -1,57 +1,47 @@
-// const graph = {
-//   i: ["j", "k"],
-//   j: ["i"],
-//   k: ["i", "m", "l"],
-//   m: ["k"],
-//   l: ["k"],
-//   o: ["n"],
-//   n: ["o"],
-// };
+const graph = {
+  0: [8, 1, 5],
+  1: [0],
+  5: [0, 8],
+  8: [0, 5],
+  2: [3, 4],
+  3: [2, 4],
+  4: [3, 2],
+};
 
-const edges = [
-  ["i", "j"],
-  ["k", "i"],
-  ["m", "k"],
-  ["k", "l"],
-  ["o", "n"],
-];
-
-const undirectionalPath = (edges, vertexA, vertexB) => {
-  const g = buildGraph(edges);
-
+const largestComponent = (graph) => {
+  // The components is possible to have a cycle.
+  // To prohebit loop through the infinity loop, use the visited Set.
   const visited = new Set();
 
-  const answer = dfs(g, vertexA, vertexB, visited);
-  console.log(answer);
+  const source = Object.keys(graph)[0];
+  let largestCount = explore(graph, source, visited);
+
+  console.log(largestCount + 1);
 };
 
-const buildGraph = (edges) => {
-  const graph = {};
+const explore = (graph, source, visited) => {
+  const queue = [source];
 
-  for (const [start, end] of edges) {
-    if (!(start in graph)) graph[start] = [];
-    if (!(end in graph)) graph[end] = [];
+  let largestCount = 0;
+  while (queue.length > 0) {
+    const current = queue.shift();
 
-    graph[start].push(end);
-    graph[end].push(start);
-  }
+    if (visited.has(current)) continue;
+    let count = 0;
+    for (const neighbor of graph[current]) {
+      if (!visited.has(neighbor)) {
+        count++;
+        visited.add(neighbor);
+        queue.push(neighbor);
+      }
+    }
 
-  return graph;
-};
-
-const dfs = (graph, source, destination, visited) => {
-  if (source === destination) return true;
-
-  if (visited.has(source)) return false;
-  visited.add(source);
-
-  for (const neighbor of graph[source]) {
-    if (dfs(graph, neighbor, destination, visited)) {
-      return true;
+    if (largestCount < count) {
+      largestCount = count;
     }
   }
 
-  return false;
+  return largestCount;
 };
 
-undirectionalPath(edges, "j", "m");
+largestComponent(graph);
