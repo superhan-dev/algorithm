@@ -1,4 +1,4 @@
-# largest component
+# largest component Logic
 
 A group of edges will be a component.
 and the component was consisted by 4 of vertices. So, the size of the component was 4.
@@ -49,12 +49,12 @@ const explore = (graph, vertex, visited) => {
   // To prohibit  an infinity loop the visited value
   visited.add(String(vertex));
   // If it is not a visited value, increse the size of the component.
+  // It will be start from 1, because we want to count the first one as well.
   let count = 1;
 
   for (const neighbor of graph[vertex]) {
-    count++;
     // keep exploring to the last node with incresing count.
-    explore(graph, neighbor, visited, count);
+    count += explore(graph, neighbor, visited, count);
   }
 
   return count;

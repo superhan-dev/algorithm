@@ -5,9 +5,9 @@ the BFS
 ## Why using a Queue with while loop?
 
 The while loop is very useful for conditional loop.
-In BFS, We need to stop the loop when the Queue is empty.
+In BFS, We need to stop the loop when the Queue has got empty.
 
-If you use while loop with using Queue, you could easily control the stopping point of the loop. Just empty Queue is the way to stop the while loop.
+If you use while loop with Queue, you could easily stop the loop. Just empty Queue, it is the only way to stop the while loop.
 
 # Code
 

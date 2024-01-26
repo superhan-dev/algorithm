@@ -1,46 +1,45 @@
-const graph = {
-  0: [8, 1, 5],
-  1: [0],
-  5: [0, 8],
-  8: [0, 5],
-  2: [3, 4],
-  3: [2, 4],
-  4: [3, 2],
-};
+const grid = [
+  ["W", "L", "W", "W", "W"],
+  ["W", "L", "W", "W", "W"],
+  ["W", "W", "W", "L", "W"],
+  ["W", "W", "L", "L", "W"],
+  ["L", "W", "W", "L", "L"],
+  ["L", "L", "W", "W", "W"],
+];
 
-const largestComponent = (graph) => {
-  // The components is possible to have a cycle.
-  // To prohebit loop through the infinity loop, use the visited Set.
+const isLandCount = (grid) => {
   const visited = new Set();
 
-  let largestCount = 0;
-  for (const node in graph) {
-    let count = explore(graph, node, visited);
-
-    if (largestCount < count) {
-      largestCount = count;
+  let count = 0;
+  for (let row = 0; row < grid.length; row++) {
+    for (let col = 0; col < grid[0].length; col++) {
+      explore(grid, row, col, visited) && count++;
     }
   }
 
-  // The function dosen't count myself. So, plus 1 for that.
-  console.log(largestCount);
-};
-
-const explore = (graph, vertex, visited) => {
-  if (visited.has(String(vertex))) return 0;
-
-  // To prohibit  an infinity loop the visited value
-  visited.add(String(vertex));
-  // If it is not a visited value, increse the size of the component.
-  let count = 1;
-
-  for (const neighbor of graph[vertex]) {
-    count++;
-    // keep exploring to the last node with incresing count.
-    explore(graph, neighbor, visited, count);
-  }
-
+  console.log(count);
   return count;
 };
 
-largestComponent(graph);
+const explore = (grid, row, col, visited) => {
+  let pos = row + "," + col;
+
+  if (visited.has(pos)) return false;
+  visited.add(pos);
+
+  const isInRow = 0 <= row && row < grid.length;
+  const isInCol = 0 <= col && col < grid[0].length;
+
+  if (!isInRow || !isInCol) return false;
+
+  if (grid[row][col] === "W") return false;
+
+  explore(grid, row - 1, col, visited); // up
+  explore(grid, row + 1, col, visited); // down
+  explore(grid, row, col - 1, visited); // right
+  explore(grid, row, col + 1, visited); // left
+
+  return true;
+};
+
+isLandCount(grid);
