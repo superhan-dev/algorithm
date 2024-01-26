@@ -1,3 +1,6 @@
+# Code
+
+```Javascript
 const grid = [
   ["W", "L", "W", "L", "W"],
   ["L", "L", "W", "L", "W"],
@@ -46,4 +49,7 @@ const exploreSize = (grid, row, col, visited) => {
   return size;
 };
 
-console.log(minimumIsLand(grid));
+minimumIsLand(grid); // 2
+
+
+```
