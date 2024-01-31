@@ -1,3 +1,25 @@
+# What I missed.
+
+spend time too much for a question.
+
+## First misstake
+
+At the first, I try to use the Set() for visited value.
+But, in this solution, the dfs function should return a node according to solution.
+So, after check the answer from other people, I reallized that It needs to return a Node rather than boolean.
+
+## Second mistake
+
+I never thought about the inner dfs function. And It was stubborn and stupid decision.
+
+I totally under stand for the solution
+
+# Spend time
+
+- 4 hours
+
+```Javascript
+
 // Definition for a Node.
 function Node(val, neighbors) {
   this.val = val === undefined ? 0 : val;
@@ -45,3 +67,6 @@ node4.neighbors = [node1, node3];
 
 const clonedGraph = cloneGraph(node1);
 console.log(clonedGraph);
+
+
+```
