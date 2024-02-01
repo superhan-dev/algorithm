@@ -8,6 +8,18 @@ the algorithm usually use with recursive function.
 - set exit point
 - wrap the recursive function.
 
+## Result
+It can loop through all possible cases. with the backtracking.
+
+```text
+[1, 2, 3]
+[1, 3, 2]
+[2, 1, 3]
+[2, 3, 1]
+[3, 2, 1]
+[3, 1, 2]
+```
+
 # Code
 ```java
 import java.util.*;
