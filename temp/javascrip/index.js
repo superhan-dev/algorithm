@@ -1,46 +1,56 @@
-function TreeNode(val, left, right) {
+function ListNode(val, next) {
   this.val = val === undefined ? 0 : val;
-  this.left = left === undefined ? null : left;
-  this.right = right === undefined ? null : right;
+  this.next = next === undefined ? null : next;
 }
-/**
- * @param {TreeNode} root
- * @return {number[]}
- */
 
-// [3,1,5,0,2,4,6]
-const t1_2_2 = new TreeNode(6);
-const t1_2_1 = new TreeNode(4);
-const t1_1_2 = new TreeNode(2);
-const t1_1_1 = new TreeNode(0);
-const t1_2 = new TreeNode(5, t1_2_1, t1_2_2);
-const t1_1 = new TreeNode(1, t1_1_1, t1_1_2);
-const t1 = new TreeNode(3, t1_1, t1_2);
+var nodeA1 = new ListNode(2);
+var nodeA2 = new ListNode(2);
+var nodeA4 = new ListNode(4);
 
-console.log(t1.val);
+nodeA1.next = nodeA2;
+nodeA2.next = nodeA4;
 
-function averageOfLevels(root) {
-  const queue = [];
-  queue.push(root);
+var nodeB1 = new ListNode(1);
+var nodeB3 = new ListNode(3);
+var nodeB4 = new ListNode(4);
 
-  const answer = [];
+nodeB1.next = nodeB3;
+nodeB3.next = nodeB4;
 
-  while (queue.length > 0) {
-    let sum = 0;
-
-    let size = queue.length;
-    for (let i = 0; i < size; i++) {
-      const current = queue.shift();
-      sum = current.val && sum + current.val;
-
-      if (current.left) queue.push(current.left);
-      if (current.right) queue.push(current.right);
-    }
-
-    answer.push(sum / size);
+const mergeTwoLists = (head1, head2) => {
+  if (head1.val > head2.val) {
+    let temp = head1;
+    head1 = head2;
+    head2 = temp;
   }
 
-  return answer;
-}
+  let tail = head1;
+  let current1 = head1.next;
+  let current2 = head2;
 
-console.log(averageOfLevels(t1));
+  while (current1 && current2) {
+    if (current2.val < current1.val) {
+      tail.next = current2;
+      current2 = current2.next;
+    } else {
+      tail.next = current1;
+      current1 = current1.next;
+    }
+
+    tail = tail.next;
+  }
+
+  if (current1) tail.next = current1;
+  if (current2) tail.next = current2;
+
+  let temp = head1;
+  while (temp) {
+    console.log(temp.val);
+
+    temp = temp.next;
+  }
+
+  return head1;
+};
+
+mergeTwoLists(nodeA1, nodeB1);
