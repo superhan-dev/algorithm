@@ -1,3 +1,28 @@
+# The Logic
+
+When traversal a grid, the reclusive function will be very helpful.
+while the reclusive the important thing is the exit condition of the function.
+otherwise, we can not avoid the infinity loop.
+
+## The exit condition of the reclusive function
+
+- size of rows, and cols of the grid
+- If the current position is the "L" or other condition
+- If the current is visited.
+  - Use the visited set or map to figure out whether the current node has been visited or not.
+
+## Use the `nested for loop` to find a position
+
+For the grid, usually realize a position with row, col.
+It is similar to a coordinate system. The first location of the grid will be `(0,0)`.
+Therefore, we need to use the `nested for loop`.
+
+## Visited Set to memorization
+
+The memorization can boost our algorithm To be more effective.
+The `visited set` memorizes the visited path with `0,0` format.
+It will help the function to avoid visiting the same position.
+
 # Code
 
 ```Javascript
