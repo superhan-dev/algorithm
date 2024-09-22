@@ -20,3 +20,4 @@ var reverse = (arr) => {
 };
 
 console.log(reverse(arr));
+console.log('commit test')
